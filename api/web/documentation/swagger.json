@@ -1,0 +1,79 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Документация",
+        "version": "1.0"
+    },
+    "paths": {
+        "/v1/users/login": {
+            "post": {
+                "summary": "Login as user",
+                "operationId": "actionV1Login",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "username": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "username": "test",
+                                    "password": "test"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/v1User"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "v1User": {
+                "title": "Пользователь системы",
+                "description": "Пользователь системы",
+                "properties": {
+                    "id": {
+                        "description": "id пользователя",
+                        "type": "number"
+                    },
+                    "userName": {
+                        "description": "Имя пользователя",
+                        "type": "string"
+                    },
+                    "email": {
+                        "description": "Электронная почта пользователя",
+                        "type": "string"
+                    },
+                    "status": {
+                        "description": "текущий статус",
+                        "type": "number"
+                    },
+                    "accessToken": {
+                        "description": "Авторизационный токен. Возвращается только для текущего пользователя",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    }
+}
